@@ -970,7 +970,7 @@ function extractPalette(url) {
         accent2: `rgb(${Math.min(255, vr + 30)},${Math.min(255, vg + 40)},${Math.min(255, vb + 50)})`,
         glow: `rgba(${vr},${vg},${vb},0.14)`,
       });
-    } catch (_) { /* keep defaults */ }
+    } catch (_) {  }
   };
   img.src = url;
 }
