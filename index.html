@@ -1728,15 +1728,9 @@ document.getElementById('enterBtn').addEventListener('click', async () => {
     await resumeAudioContext();
     
     // Start with one of the specified songs
-    const preferredStarts = [
-      "Cherbi - The Man behind the sniper - Five Nights at Kirky's ost",
-      "Azari - Azari - Scapegoat (feat.ロス)",
-      "DECO＊27 - DECO＊27 - チェリーポップ feat. 初音ミク"
-    ];
-    const startTrack = preferredStarts[Math.floor(Math.random() * preferredStarts.length)];
-    const startIdx = CONFIG.tracks.findIndex(t => t.title === startTrack);
+    const startIdx = Math.floor(Math.random() * CONFIG.tracks.length);
     
-    loadTrack(startIdx >= 0 ? startIdx : 0, true);
+    loadTrack(startIdx, true);
   }
 });
 
