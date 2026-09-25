@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>wen</title>
 <meta name="description" content="link page" />
-<link rel="icon" href="https://placehold.co/200x200/17171a/9a9a9f?text=%20" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎵</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1684,6 +1684,7 @@ async function updatePresence() {
       const ext = d.discord_user.avatar.startsWith('a_') ? 'gif' : 'png';
       const avatarUrl = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.${ext}?size=128`;
       document.getElementById('avatar').src = avatarUrl;
+      document.querySelector('link[rel="icon"]').href = avatarUrl;
       if (d.discord_user.avatar !== lastAvatarHash) {
         lastAvatarHash = d.discord_user.avatar;
         extractPalette(avatarUrl);
