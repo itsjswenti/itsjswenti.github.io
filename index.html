@@ -1684,7 +1684,23 @@ async function updatePresence() {
       const ext = d.discord_user.avatar.startsWith('a_') ? 'gif' : 'png';
       const avatarUrl = `https://cdn.discordapp.com/avatars/${d.discord_user.id}/${d.discord_user.avatar}.${ext}?size=128`;
       document.getElementById('avatar').src = avatarUrl;
-      document.querySelector('link[rel="icon"]').href = avatarUrl;
+      
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 128;
+        canvas.height = 128;
+        const ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(64, 64, 64, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
+        ctx.drawImage(img, 0, 0, 128, 128);
+        document.querySelector('link[rel="icon"]').href = canvas.toDataURL();
+      };
+      img.src = avatarUrl;
+      
       if (d.discord_user.avatar !== lastAvatarHash) {
         lastAvatarHash = d.discord_user.avatar;
         extractPalette(avatarUrl);
