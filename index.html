@@ -1728,9 +1728,10 @@ document.getElementById('enterBtn').addEventListener('click', async () => {
     await resumeAudioContext();
     
     // Start with one of the specified songs
-    const seed = Date.now() % CONFIG.tracks.length;
-    const startIdx = Math.floor((Math.random() * CONFIG.tracks.length + seed) % CONFIG.tracks.length);
-    console.log('[start] Random track index:', startIdx, 'of', CONFIG.tracks.length);
+    const randomArray = new Uint32Array(1);
+    crypto.getRandomValues(randomArray);
+    const startIdx = randomArray[0] % CONFIG.tracks.length;
+    console.log('[start] Random track index:', startIdx, 'of', CONFIG.tracks.length, '- Track:', CONFIG.tracks[startIdx].title);
     
     loadTrack(startIdx, true);
   }
