@@ -1728,7 +1728,9 @@ document.getElementById('enterBtn').addEventListener('click', async () => {
     await resumeAudioContext();
     
     // Start with one of the specified songs
-    const startIdx = Math.floor(Math.random() * CONFIG.tracks.length);
+    const seed = Date.now() % CONFIG.tracks.length;
+    const startIdx = Math.floor((Math.random() * CONFIG.tracks.length + seed) % CONFIG.tracks.length);
+    console.log('[start] Random track index:', startIdx, 'of', CONFIG.tracks.length);
     
     loadTrack(startIdx, true);
   }
